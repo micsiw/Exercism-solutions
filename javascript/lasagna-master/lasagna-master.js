@@ -11,7 +11,8 @@
  * }
  */
 
-export function cookingStatus (timer) {
+ export function cookingStatus (timer) {
+
     if (timer === 0) {
         return 'Lasagna is done.';
     } else if (timer > 0) {
@@ -21,26 +22,50 @@ export function cookingStatus (timer) {
     }
  }
 
-export function preparationTime (layers, timePerLayer = 2) {
+ export function preparationTime (layers, timePerLayer = 2) {
+
     const howManyLayers = layers.length;
 
     return howManyLayers * timePerLayer;
 }
 
 export function quantities (layers) {
-    const howManyLayers = layers.length;
-    let howManyNoodles = 0;
-    layers.forEach(countNoodles);
 
-    function countNoodles (noodles) {
-        if (layers === 'noodles') {
-            howManyNoodles += noodles;
-        }
+    let howManySauce = 0;
+    let howManyNoodles = 0;
+
+    for (let i = 0; i < layers.length; i++) {
+        if (layers[i] === 'noodles') howManyNoodles++;
     }
 
+    for (let i = 0; i < layers.length; i++) {
+        if (layers[i] === 'sauce') howManySauce++;
+    }
 
     return {
         noodles: howManyNoodles * 50,
-        sauce: howManyLayers * 0.2,
+        sauce: howManySauce * 0.2,
     };
+}
+
+export function addSecretIngredient(friendsList, myList) {
+
+    let secretIngredient = friendsList.slice(-1);
+    secretIngredient = secretIngredient.toString();
+    
+    myList.push(secretIngredient);
+}
+
+export function scaleRecipe(recipe, portions) {
+
+    let scaled = {...recipe};
+
+    console.log(scaled)
+
+    for (let key in scaled) {
+        scaled[key] = scaled[key] / 2 * portions;
+    }
+
+    console.log(recipe);
+    return scaled;
 }
