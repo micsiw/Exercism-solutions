@@ -60,12 +60,9 @@ export function scaleRecipe(recipe, portions) {
 
     let scaled = {...recipe};
 
-    console.log(scaled)
-
     for (let key in scaled) {
         scaled[key] = scaled[key] / 2 * portions;
     }
 
-    console.log(recipe);
     return scaled;
 }
